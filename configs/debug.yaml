@@ -1,0 +1,39 @@
+experiment:
+  name: debug
+  output_dir: outputs
+  data_dir: data
+  resume: true
+  save_best_by: val_acc
+  print_every: 1
+
+reproducibility:
+  seeds: [42]
+  deterministic: false
+  benchmark: true
+
+models:
+  names:
+    - SimpleCNN
+  num_classes: 10
+
+training:
+  epochs: 2
+  batch_size: 128
+  num_workers: 2
+  optimizer: SGD
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0005
+  scheduler: CosineAnnealingLR
+  label_smoothing: 0.1
+  amp: false
+  val_ratio: 0.1
+
+measurement:
+  enabled: true
+  input_size: [1, 3, 32, 32]
+  latency_device: cpu
+  latency_batch_size: 1
+  latency_warmup: 5
+  latency_iters: 10
+  cpu_threads: 1
